@@ -222,6 +222,7 @@ type process struct {
 // doRequest makes new request to the server using the c.Method, c.URL and the body.
 // body is enveloped in Do method
 func (p *process) doRequest(url string) ([]byte, error) {
+	url = strings.ReplaceAll(url, "http://", "https://")
 	req, err := http.NewRequest("POST", url, bytes.NewBuffer(p.Payload))
 	if err != nil {
 		return nil, err
